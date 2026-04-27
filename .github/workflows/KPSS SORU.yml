@@ -1,0 +1,24 @@
+name: Günde 3 Kez 20 Soru Gönder
+
+on:
+  schedule:
+    # TSİ 09:00, 15:00 ve 21:00 (UTC 06, 12, 18)
+    - cron: '0 6,12,18 * * *'
+  workflow_dispatch:
+
+jobs:
+  run_bot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: setup-python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install requests
+      - name: Run script
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python KPSS_SORU.py
