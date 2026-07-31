@@ -3,7 +3,7 @@ name: Günde 3 Kez 20 Soru Gönder
 on:
   schedule:
     # TSİ 09:00, 15:00 ve 21:00 (UTC 06, 12, 18)
-    - cron: '0 6,12,18 * * *'
+    - cron: '0 6,12,17 * * *'
   workflow_dispatch:
 
 jobs:
